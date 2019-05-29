@@ -29,7 +29,7 @@ public abstract class MiddleBlockChangeSingle extends MiddleBlock {
 		int y = position.getY();
 		int z = position.getZ();
 		CachedChunk cachedChunk = cache.getChunkCache().get(ChunkCoord.fromGlobal(x, z));
-		if (cachedChunk != null) {
+		if (cachedChunk != null && y < 4095) {
 			cachedChunk.setBlock(y >> 4, CachedChunk.getBlockIndex(x & 0xF, y & 0xF, z & 0xF), id);
 			return true;
 		} else {
