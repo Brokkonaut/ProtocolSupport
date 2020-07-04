@@ -1,6 +1,7 @@
 package protocolsupport.protocol.packet.middle.clientbound.play;
 
 import io.netty.buffer.ByteBuf;
+import java.util.Arrays;
 import protocolsupport.protocol.ConnectionImpl;
 import protocolsupport.protocol.packet.middle.ClientBoundMiddlePacket;
 import protocolsupport.protocol.serializer.ArraySerializer;
@@ -19,9 +20,13 @@ public abstract class MiddleDeclareTags extends ClientBoundMiddlePacket {
 
 	@Override
 	protected void readServerData(ByteBuf serverdata) {
+		System.out.println("blocks");
 		blocks = readTags(serverdata);
+		System.out.println("items");
 		items = readTags(serverdata);
+		System.out.println("fluids");
 		fluids = readTags(serverdata);
+		System.out.println("entities");
 		entities = readTags(serverdata);
 	}
 
@@ -45,6 +50,7 @@ public abstract class MiddleDeclareTags extends ClientBoundMiddlePacket {
 		public Tag(String tagId, int[] taggedIds) {
 			this.tagId = tagId;
 			this.taggedIds = taggedIds;
+			System.out.println("Have a good tag: new Tag(\"" + tagId + "\", new int[] "  + Arrays.toString(taggedIds).replace('[', '{').replace(']', '}')+");");
 		}
 		public String getTagId() {
 			return tagId;
